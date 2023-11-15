@@ -11,9 +11,9 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
 const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]); 
 const [message, setMessage] = React.useState(""); 
-const {createToast} = React.useContext(ToastContext);
+const {createToast, setToastStack} = React.useContext(ToastContext);
 
-   useEscapeKey();
+useEscapeKey(()=>{setToastStack([])});
 
 
   return (

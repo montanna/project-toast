@@ -1,20 +1,18 @@
 import React from 'react';
 import { ToastContext } from '../ToastProvider';
 
-function useEscapeKey() {
-    const { setToastStack }  = React.useContext(ToastContext);
+function useEscapeKey(callback) {
     React.useEffect(() => {
         const escapeToasts = function(event){
           if(event.key === "Escape"){
-            console.log("it's funny it sounds just like the word escape")
-            setToastStack([]);
+            callback(event);
           }
         };
         window.addEventListener("keydown", escapeToasts);
         return () => {
           window.removeEventListener("keydown", escapeToasts);
         }
-      }, [setToastStack]);
+      }, [callback]);
 }
 
 export default useEscapeKey;
